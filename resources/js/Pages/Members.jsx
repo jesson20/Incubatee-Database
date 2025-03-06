@@ -209,18 +209,24 @@ export default function MembersForStartup({ startupId, startupName }) {
                   <tr>
                     <th className="border px-4 py-2">Startup ID</th>
                     <th className="border px-4 py-2">Startup Name</th>
+                    <th className="border px-4 py-2">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {startups.length > 0 ? (
                     startups.map((startup) => (
-                      <tr
-                        key={startup.id}
-                        onClick={() => handleStartupClick(startup.id, startup.startup_name)}
-                        className="cursor-pointer"
-                      >
+                      <tr key={startup.id}>
                         <td className="border px-4 py-2">{startup.id}</td>
                         <td className="border px-4 py-2">{startup.startup_name}</td>
+                        <td className="border px-4 py-2">
+                          <button
+                            onClick={() => handleStartupClick(startup.id, startup.startup_name)}
+                            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 cursor-pointer"
+                          >
+                            View Members
+                          </button>
+                          
+                        </td>
                       </tr>
                     ))
                   ) : (

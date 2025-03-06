@@ -8,6 +8,7 @@ use App\Http\Controllers\StartupProfileController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\FinancialController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -37,6 +38,10 @@ Route::middleware('auth')->group(function () {
         return Inertia::render('Achievements');
     })->name('achievements');
 
+    Route::get('/financials', function () {
+        return Inertia::render('Financials');
+    })->name('financials');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -65,12 +70,17 @@ Route::prefix('startup-profiles/{startupProfile}')->group(function () {
 });
 
 // Document management routes (DTI, BIR, SEC)
-// Document management routes (DTI, BIR, SEC)
 Route::prefix('startup-profiles/{startupProfile}')->group(function () {
     Route::get('/documents', [DocumentController::class, 'index']);
     Route::post('/documents/upload', [DocumentController::class, 'upload']);
     Route::get('/documents/download/{documentType}', [DocumentController::class, 'download']);
 });
 
-
+// Financial Records Routes
+Route::prefix('startup-profiles/{startupProfile}')->group(function () {
+    Route::get('/financials', [FinancialController::class, 'index']);
+    Route::post('/financials', [FinancialController::class, 'store']);
+    Route::put('/financials/{recordId}', [FinancialController::class, 'update']);
+    Route::delete('/financials/{recordId}', [FinancialController::class, 'destroy']);
+});
 require __DIR__ . '/auth.php';

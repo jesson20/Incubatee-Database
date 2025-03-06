@@ -27,4 +27,9 @@ class StartupProfile extends Model
     {
         return $this->hasMany(Achievement::class);
     }
+
+    public function financials()
+    {
+        return $this->hasMany(Financial::class);
+    }
 }
