@@ -11,7 +11,7 @@ class MemberController extends Controller
     // Fetch members of a specific startup profile
     public function index(StartupProfile $startupProfile)
     {
-        return response()->json($startupProfile->members);
+        return response()->json($startupProfile->members()->orderBy('created_at', 'desc')->get());
     }
 
     // Store a new member in a specific startup profile

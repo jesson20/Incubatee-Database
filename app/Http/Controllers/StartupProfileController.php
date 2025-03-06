@@ -9,7 +9,7 @@ class StartupProfileController extends Controller
 {
     public function index()
     {
-        return response()->json(StartupProfile::all());
+        return response()->json(StartupProfile::orderBy('updated_at', 'desc')->get());
     }
 
     public function store(Request $request)
@@ -21,8 +21,8 @@ class StartupProfileController extends Controller
                 'industry' => 'required|string',
                 'leader' => 'required|string',
                 'number_of_members' => 'required|integer',
-                'date_registered_dti' => 'required|date',
-                'date_registered_bir' => 'required|date',
+                'date_registered_dti' => 'nullable|date',
+                'date_registered_bir' => 'nullable|date',
             ]);
 
             // Create the startup profile
@@ -60,6 +60,10 @@ class StartupProfileController extends Controller
             'date_registered_dti' => 'nullable|date',
             'date_registered_bir' => 'nullable|date',
         ]);
+
+        $validated['date_registered_dti'] = $validated['date_registered_dti'] ?: null;
+        $validated['date_registered_bir'] = $validated['date_registered_bir'] ?: null;
+
 
         $profile->update($validated);
 

@@ -222,6 +222,7 @@ export default function AchievementsForStartup({ startupId, startupName }) {
                   <tr>
                     <th className="border px-4 py-2">Startup ID</th>
                     <th className="border px-4 py-2">Startup Name</th>
+                    <th className="border px-4 py-2">Actions</th>
                   </tr>
                 </thead>
                 <tbody>

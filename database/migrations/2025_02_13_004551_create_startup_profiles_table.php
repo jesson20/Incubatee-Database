@@ -13,8 +13,8 @@ return new class extends Migration {
             $table->string('industry');
             $table->integer('number_of_members');
             $table->string('leader'); // New Column
-            $table->date('date_registered_dti');
-            $table->date('date_registered_bir');
+            $table->date('date_registered_dti')->nullable();
+            $table->date('date_registered_bir')->nullable();
             $table->timestamps();
         });
     }

@@ -95,8 +95,6 @@ export default function Profiles() {
                 alert("Failed to save profile: " + JSON.stringify(errorData)); // Show exact error
                 return;
             }
-
-            console.log(formData);
             
     
             alert("Profile saved successfully!");
@@ -285,34 +283,32 @@ export default function Profiles() {
                         />
 
                         {/* DTI Date with Calendar Icon Inside Input */}
-                        <div className="relative mb-3">
-                            <DatePicker
-                                selected={formData.dtiDate}
-                                onChange={(date) => handleDateChange("dtiDate", date)}
-                                dateFormat="MM/dd/yyyy"
-                                placeholderText="Date Registered (DTI)"
-                                className="w-full border px-3 py-2 pr-10 outline-none"
-                                ref={dtiDatePickerRef} // Attach ref
-                            />
-                            <FaCalendarAlt
-                                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer"
-                                onClick={() => dtiDatePickerRef.current.setOpen(true)} // Open DTI picker
+                        <div className="mb-4">
+                            <label htmlFor="date" className="block text-gray-700">
+                                Date
+                            </label>
+                            <input
+                            type="date"
+                            id="dtiDate"
+                            name="dtiDate"
+                            value={formData.dtiDate || ''}
+                            onChange={handleChange}
+                            className="w-full px-4 py-2 border rounded-md"
                             />
                         </div>
 
                         {/* BIR Date with Calendar Icon Inside Input */}
-                        <div className="relative mb-3">
-                            <DatePicker
-                                selected={formData.birDate}
-                                onChange={(date) => handleDateChange("birDate", date)}
-                                dateFormat="MM/dd/yyyy"
-                                placeholderText="Date Registered (BIR)"
-                                className="w-full border px-3 py-2 pr-10 outline-none"
-                                ref={birDatePickerRef} // Attach ref
-                            />
-                            <FaCalendarAlt
-                                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer"
-                                onClick={() => birDatePickerRef.current.setOpen(true)} // Open BIR picker
+                        <div className="mb-4">
+                            <label htmlFor="date" className="block text-gray-700">
+                            Date
+                            </label>
+                            <input
+                            type="date"
+                            id="birDate"
+                            name="birDate"
+                            value={formData.birDate || ''}
+                            onChange={handleChange}
+                            className="w-full px-4 py-2 border rounded-md"
                             />
                         </div>
 
